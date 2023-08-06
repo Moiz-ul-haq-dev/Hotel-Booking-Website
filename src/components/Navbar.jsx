@@ -1,13 +1,20 @@
-import React , { useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Navbar() {
 
-    const [showDropdown, setShowDropdown] = useState(false);
+    const [showDropdown, setShowDropdown] = useState(false);    
 
-  const handleDropdownToggle = () => {
-    setShowDropdown(!showDropdown);
-  };
+    const handleScrollToAbout = () => {
+        const aboutSection = document.getElementById('about-us');
+        if (aboutSection) {
+            aboutSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
+    const handleDropdownToggle = () => {
+        setShowDropdown(!showDropdown);
+    };
 
     return (
         <>
@@ -22,7 +29,10 @@ export default function Navbar() {
                 </div>
                 <div className="pr-8 text-white items-center flex justify-center">
                     <Link to="/" className="py-2 px-4 font-bold">Home</Link>
-                    <Link to="/About" className="py-2 px-4 font-bold">About</Link>
+                    {/* <Link to="/About" className="py-2 px-4 font-bold">About</Link> */}
+                    <Link to="/" className="py-2 px-4 font-bold" onClick={handleScrollToAbout}>
+                        About
+                    </Link>
                     <Link to="/" className="py-2 px-4 font-bold">Services</Link>
                     <Link to="/" className="py-2 px-4 font-bold">Rooms</Link>
                     {/* <Link href="/" className="py-2 px-4 font-bold">Pages</Link> */}

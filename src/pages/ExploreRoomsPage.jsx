@@ -41,7 +41,7 @@ export default function ExploreRoomsPage() {
               key={index}
               className="card flex-1 border shadow-lg relative transition-transform transform-gpu hover:scale-105"
             >
-              <img src={room.imageSrc} alt={room.title} className="w-full h-48 object-cover rounded-t-lg" />
+              <img src={room.imageSrc} alt={room.title} className="w-full h-48 object-cover" />
               <div className="card-price absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 bg-orange-400 text-white font-bold py-2 px-4">
                 {room.price}
               </div>

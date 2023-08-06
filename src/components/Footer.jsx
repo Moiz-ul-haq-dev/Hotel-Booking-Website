@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
@@ -6,22 +7,22 @@ export default function Footer() {
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center mx-40">
           <div className="text-white text-sm mb-4 md:mb-0">
-            <p>&copy; {new Date().getFullYear()} Your Company. All rights reserved.</p>
-            <p>123 Main Street, City, Country</p>
+            <p>&copy; {new Date().getFullYear()} HOTELIER. All rights reserved.</p>
+            <p>GT Road, Near UET Lahore, Punjab Pakistan.</p>
           </div>
           <div className="flex space-x-4">
-            <a href="/" className="text-white hover:text-gray-400 transition-colors duration-300">
+            <Link to="/" className="text-white hover:text-gray-400 transition-colors duration-300">
               Home
-            </a>
-            <a href="/about" className="text-white hover:text-gray-400 transition-colors duration-300">
+            </Link>
+            <Link to="/About" className="text-white hover:text-gray-400 transition-colors duration-300">
               About Us
-            </a>
-            <a href="/services" className="text-white hover:text-gray-400 transition-colors duration-300">
+            </Link>
+            <Link to="/Services" className="text-white hover:text-gray-400 transition-colors duration-300">
               Services
-            </a>
-            <a href="/contact" className="text-white hover:text-gray-400 transition-colors duration-300">
+            </Link>
+            <Link to="/Contact" className="text-white hover:text-gray-400 transition-colors duration-300">
               Contact
-            </a>
+            </Link>
           </div>
         </div>
       </div>
