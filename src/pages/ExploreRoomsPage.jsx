@@ -28,7 +28,7 @@ const roomsData = [
 export default function ExploreRoomsPage() {
   return (
     <>
-      <div className="mx-32 my-24 h-auto">
+      <div id="rooms" className="mx-32 my-24 h-auto">
         <h1 className="flex text-orange-400 font-bold text-lg justify-center">
           <p className="mr-4 font-normal">━━━━</p> OUR ROOMS <p className="ml-4 font-normal">━━━━</p>
         </h1>

@@ -3,12 +3,30 @@ import { Link } from 'react-router-dom'
 
 export default function Navbar() {
 
-    const [showDropdown, setShowDropdown] = useState(false);    
+    const [showDropdown, setShowDropdown] = useState(false);
 
     const handleScrollToAbout = () => {
         const aboutSection = document.getElementById('about-us');
         if (aboutSection) {
             aboutSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+    const handleScrollToService = () => {
+        const serviceSelection = document.getElementById('services');
+        if (serviceSelection) {
+            serviceSelection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+    const handleScrollToStart = () => {
+        const startSelection = document.getElementById('navbar');
+        if (startSelection) {
+            startSelection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+    const handleScrollToRooms = () => {
+        const roomSelection = document.getElementById('rooms');
+        if (roomSelection) {
+            roomSelection.scrollIntoView({ behavior: 'smooth' });
         }
     };
 
@@ -18,7 +36,7 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="flex justify-between items-center h-auto bg-black text-orange-400 relative shadow-sm font-mono" role="navigation">
+            <nav id="navbar" className="flex justify-between items-center h-auto bg-black text-orange-400 relative shadow-sm font-mono" role="navigation">
                 <Link href="/" className="pl-8 text-4xl font-bold">HOTELIER</Link>
                 <div className="px-4 cursor-pointer md:hidden">
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -28,13 +46,13 @@ export default function Navbar() {
                     </svg>
                 </div>
                 <div className="pr-8 text-white items-center flex justify-center">
-                    <Link to="/" className="py-2 px-4 font-bold">Home</Link>
+                    <Link to="/" className="py-2 px-4 font-bold" onClick={handleScrollToStart}>Home</Link>
                     {/* <Link to="/About" className="py-2 px-4 font-bold">About</Link> */}
                     <Link to="/" className="py-2 px-4 font-bold" onClick={handleScrollToAbout}>
                         About
                     </Link>
-                    <Link to="/" className="py-2 px-4 font-bold">Services</Link>
-                    <Link to="/" className="py-2 px-4 font-bold">Rooms</Link>
+                    <Link to="/" className="py-2 px-4 font-bold" onClick={handleScrollToService}>Services</Link>
+                    <Link to="/" className="py-2 px-4 font-bold" onClick={handleScrollToRooms}>Rooms</Link>
                     {/* <Link href="/" className="py-2 px-4 font-bold">Pages</Link> */}
                     <div className="relative">
                         <div
@@ -61,7 +79,7 @@ export default function Navbar() {
                             </div>
                         )}
                     </div>
-                    <Link href="/" className="py-2 px-4 font-bold text-orange-400">Contact</Link>
+                    <Link to="/Contact" className="py-2 px-4 font-bold text-orange-400">Contact</Link>
                 </div>
                 <div className="hidden md:block">
                     <button className="bg-orange-400 font-bold text-white text-lg h-16 w-56 px-4 py-2">
