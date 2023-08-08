@@ -82,9 +82,10 @@ export default function Navbar() {
                     <Link to="/Contact" className="py-2 px-4 font-bold text-orange-400">Contact</Link>
                 </div>
                 <div className="hidden md:block">
-                    <button className="bg-orange-400 font-bold text-white text-lg h-16 w-56 px-4 py-2">
-                        Premium Version →
+                    <Link to='/LoginSignup'><button className="bg-orange-400 font-bold text-white text-lg h-16 w-56 px-4 py-2">
+                        Login / SignUp →
                     </button>
+                    </Link>
                 </div>
             </nav>
         </>
