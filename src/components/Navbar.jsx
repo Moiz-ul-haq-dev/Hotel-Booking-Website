@@ -1,9 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Navbar() {
 
     const [showDropdown, setShowDropdown] = useState(false);
+
+    const [userEmail, setUserEmail] = useState('');
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    useEffect(() => {
+        // Check local storage for user login status
+        const userLoginStatus = localStorage.getItem('loggedIn');
+        const userEmail = localStorage.getItem('email');
+
+        if (userLoginStatus === 'true' && userEmail) {
+            setLoggedIn(true);
+            setUserEmail(userEmail);
+        }
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem('loggedIn');
+        localStorage.removeItem('email');
+        localStorage.removeItem('userRole');
+        setLoggedIn(false);
+        setUserEmail('');
+        // Perform additional logout actions if needed
+    };
 
     const handleScrollToAbout = () => {
         const aboutSection = document.getElementById('about-us');
@@ -82,10 +105,24 @@ export default function Navbar() {
                     <Link to="/Contact" className="py-2 px-4 font-bold text-orange-400">Contact</Link>
                 </div>
                 <div className="hidden md:block">
-                    <Link to='/LoginSignup'><button className="bg-orange-400 font-bold text-white text-lg h-16 w-56 px-4 py-2">
+                    {/* <Link to='/LoginSignup'><button className="bg-orange-400 font-bold text-white text-lg h-16 w-56 px-4 py-2">
                         Login / SignUp →
                     </button>
-                    </Link>
+                    </Link> */}
+                    {loggedIn ? (
+                        <div className="flex items-center">
+                            <p className="flex mr-2 py-2">{userEmail}</p>
+                            <button className="bg-orange-400 font-bold text-lg h-16 w-32 text-white px-4 py-2" onClick={handleLogout}>
+                                Logout
+                            </button>
+                        </div>
+                    ) : (
+                        <Link to='/LoginSignup'>
+                            <button className="bg-orange-400 font-bold text-white text-lg h-16 w-56 px-4 py-2">
+                                Login / SignUp →
+                            </button>
+                        </Link>
+                    )}
                 </div>
             </nav>
         </>

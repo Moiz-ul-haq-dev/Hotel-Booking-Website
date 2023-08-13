@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage'
 import AboutUsPage from './pages/AboutUsPage'
 import ContactUsPage from './pages/ContactUsPage'
 import LoginSignupPage from './pages/LoginSignupPage'
+import AdminDashboardPage from './pages/AdminDashboardPage'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
           <Route path='/About' element = {<AboutUsPage />} />
           <Route path="/Contact" element = {<ContactUsPage />} />
           <Route path='LoginSignup' element = {<LoginSignupPage />} />
+          <Route path='/dashboard/*' element = {<AdminDashboardPage />} />
         </Routes>
       </Router>
     </>

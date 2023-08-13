@@ -32,7 +32,7 @@ export default function ContactUsPage() {
                     <p className="mr-4 font-normal">━━━━</p> CONTACT US <p className="ml-4 font-normal">━━━━</p>
                 </h1>
                 <h1 className="flex font-bold text-4xl mt-6 justify-center">
-                    <p className="mr-4 text-orange-400">CONATCT</p> For Any Query
+                    <p className="mr-4 text-orange-400">CONTACT</p> For Any Query
                 </h1>
                 <div className="container mx-auto my-12">
                     <form onSubmit={handleSubmit} className="block">

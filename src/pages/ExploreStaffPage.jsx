@@ -1,40 +1,60 @@
-import React from 'react';
+import React , { useState , useEffect }from 'react';
 
-const staffData = [
-  {
-    name: 'Moiz-ul-haq',
-    position: 'CEO',
-    imageSrc: '/images/CEO.jpg',
-    socialMedia: {
-      twitter: '/images/twitter.png',
-      linkedin: '/images/instagram.png',
-      facebook: '/images/fb.png',
-    },
-  },
-  {
-    name: 'Jane Smith',
-    position: 'Hotel Manager',
-    imageSrc: '/images/Staff1.jpg',
-    socialMedia: {
-      twitter: '/images/twitter.png',
-      linkedin: '/images/instagram.png',
-      facebook: '/images/fb.png',
-    },
-  },
-  {
-    name: 'Emma Watson',
-    position: 'Event Planner',
-    imageSrc: '/images/Staff2.jpg',
-    socialMedia: {
-      twitter: '/images/twitter.png',
-      linkedin: '/images/instagram.png',
-      facebook: '/images/fb.png',
-    },
-  },
-  // Add more staff members as needed...
-];
+// const staffData = [
+//   {
+//     name: 'Moiz-ul-haq',
+//     position: 'CEO',
+//     imageSrc: '/images/CEO.jpg',
+//     socialMedia: {
+//       twitter: '/images/twitter.png',
+//       linkedin: '/images/instagram.png',
+//       facebook: '/images/fb.png',
+//     },
+//   },
+//   {
+//     name: 'Jane Smith',
+//     position: 'Hotel Manager',
+//     imageSrc: '/images/Staff1.jpg',
+//     socialMedia: {
+//       twitter: '/images/twitter.png',
+//       linkedin: '/images/instagram.png',
+//       facebook: '/images/fb.png',
+//     },
+//   },
+//   {
+//     name: 'Emma Watson',
+//     position: 'Event Planner',
+//     imageSrc: '/images/Staff2.jpg',
+//     socialMedia: {
+//       twitter: '/images/twitter.png',
+//       linkedin: '/images/instagram.png',
+//       facebook: '/images/fb.png',
+//     },
+//   },
+//   // Add more staff members as needed...
+// ];
 
 export default function ExploreStaffPage() {
+  const [employees, setEmployees] = useState([]);
+  useEffect(() => {
+    fetchEmployees();
+  }, []);
+
+  const fetchEmployees = async () => {
+    console.log('fetchEmployees called');
+    fetch('http://localhost:4000/getEmployees', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setEmployees(data);
+      }
+      );
+  };
+
   return (
     <div className="mx-32 my-24">
        <h1 className="flex text-orange-400 font-bold text-lg justify-center">
@@ -44,16 +64,16 @@ export default function ExploreStaffPage() {
           Explore Our <p className="ml-4 text-orange-400">STAFFS</p>
         </h1>
       <div className="grid gap-8 md:grid-cols-3 my-10">
-        {staffData.map((staff, index) => (
+        {employees.map((staff, index) => (
           <div key={index} className="bg-white p-6 text-black flex flex-col items-center rounded-lg shadow-lg">
             <img
-              src={staff.imageSrc}
+              src={`http://localhost:4000/images/${staff.image}`}
               alt={staff.name}
               className="w-44 h-44 object-cover rounded-full mb-4"
             />
             <h2 className="text-lg font-semibold mb-2">{staff.name}</h2>
-            <p className="text-sm mb-2">{staff.position}</p>
-            <div className="flex space-x-4">
+            <p className="text-sm mb-2">{staff.contact}</p>
+            {/* <div className="flex space-x-4">
               {Object.entries(staff.socialMedia).map(([platform, logoSrc]) => (
                 <div
                   key={platform}
@@ -62,7 +82,7 @@ export default function ExploreStaffPage() {
                   <img src={logoSrc} alt={`${platform} logo`} className="w-6 h-6 object-contain" />
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
         ))}
       </div>

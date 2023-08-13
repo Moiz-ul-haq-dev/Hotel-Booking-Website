@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+// import AdminDashboardPage from './AdminDashboardPage';
 
 export default function LoginSignupPage() {
   const [showLogin, setShowLogin] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassowrd] = useState('');
-
+  const [userRole] = useState('Customer');
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -26,17 +27,21 @@ export default function LoginSignupPage() {
     if (password !== confirmPassword) {
       alert('Passwords do not match');
     } else {
-      console.log(email, password, confirmPassword);
+      console.log(email, password, confirmPassword, userRole);
       fetch('http://localhost:4000/signUp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password, confirmPassword }),
+        body: JSON.stringify({ email, password, confirmPassword, userRole }),
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          if (data.error && data.error.includes('email')) {
+            alert('Email already exists. Please use a different email.');
+          } else {
+            alert('Signup successful!');
+          }
         });
     }
   };
@@ -55,7 +60,20 @@ export default function LoginSignupPage() {
       .then((res) => res.json())
       .then((data) => {
         for (let i = 0; i < data.length; i++) {
-          
+          if (data[i].email === email && data[i].password === password && data[i].userRole === "Admin") {
+            console.log('Login Successful admin');
+            localStorage.setItem('userRole', 'Admin');
+            localStorage.setItem('email', email);
+            localStorage.setItem('loggedIn', true);
+            window.location.href = '/dashboard';
+          }
+          else if (data[i].email === email && data[i].password === password && data[i].userRole === "Customer") {
+            console.log('Login Successful customer');
+            localStorage.setItem('userRole', 'Customer');
+            localStorage.setItem('email', email);
+            localStorage.setItem('loggedIn', true);
+            window.location.href = '/';
+          }
         }
       }
       );
