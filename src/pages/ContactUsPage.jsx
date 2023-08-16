@@ -26,7 +26,7 @@ export default function ContactUsPage() {
     };
 
     const handleSubmit = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
 
         console.log(userName, userEmail, userPhone, userMessage);
 
