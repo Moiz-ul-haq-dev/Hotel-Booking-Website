@@ -25,12 +25,12 @@ export default function ContactUsPage() {
         setUserMessage(e.target.value);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         // e.preventDefault();
 
         console.log(userName, userEmail, userPhone, userMessage);
 
-        fetch('https://sheer-fixed-mask.glitch.me/sendContactMail', {
+        await fetch('https://sheer-fixed-mask.glitch.me/sendContactMail', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
