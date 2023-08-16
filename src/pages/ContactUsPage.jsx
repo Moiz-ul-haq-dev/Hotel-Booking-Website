@@ -45,6 +45,11 @@ export default function ContactUsPage() {
                     alert('Thank you for contacting us!');
                 }
             });
+
+        setUserEmail('');
+        setUserName('');
+        setUserPhone('');
+        setUserMessage('');
     };
 
     return (
