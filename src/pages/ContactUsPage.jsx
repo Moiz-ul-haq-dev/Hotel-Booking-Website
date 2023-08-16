@@ -49,6 +49,8 @@ export default function ContactUsPage() {
                     setUserMessage('');
                 }
             });
+
+        window.location.href = '/mailSent';
     };
 
     return (
