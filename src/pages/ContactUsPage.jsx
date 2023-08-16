@@ -4,13 +4,13 @@ import Footer from '../components/Footer'
 
 export default function ContactUsPage() {
 
-    const [userName , setUserName] = useState('');
-    const [userEmail , setUserEmail] = useState('');
-    const [userPhone , setUserPhone] = useState('');
-    const [userMessage , setUserMessage] = useState('');
+    const [userName, setUserName] = useState('');
+    const [userEmail, setUserEmail] = useState('');
+    const [userPhone, setUserPhone] = useState('');
+    const [userMessage, setUserMessage] = useState('');
 
     const handleNameChange = (e) => {
-        setUserName(e.target.value);    
+        setUserName(e.target.value);
     };
 
     const handleEmailChange = (e) => {
@@ -43,13 +43,12 @@ export default function ContactUsPage() {
                     alert('Something went wrong. Please try again later.');
                 } else {
                     alert('Thank you for contacting us!');
+                    setUserEmail('');
+                    setUserName('');
+                    setUserPhone('');
+                    setUserMessage('');
                 }
             });
-
-        setUserEmail('');
-        setUserName('');
-        setUserPhone('');
-        setUserMessage('');
     };
 
     return (
