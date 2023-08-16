@@ -42,7 +42,7 @@ export default function ManageEmployeesSection() {
 
   const fetchEmployees = async () => {
     console.log('fetchEmployees called');
-    fetch('http://localhost:4000/getEmployees', {
+    fetch('https://sheer-fixed-mask.glitch.me/getEmployees', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ export default function ManageEmployeesSection() {
     <div className="p-4">
       <div className="my-4">
         <h3 className="text-lg font-semibold mb-2 text-center">Add New Employee</h3>
-        <form action='http://localhost:4000/addEmployees' method='post' encType="multipart/form-data">
+        <form action='https://sheer-fixed-mask.glitch.me/addEmployees' method='post' encType="multipart/form-data">
         <label className="block text-sm font-medium text-gray-700 mb-2"> Enter Employee Name</label>
           <input
             type="text"
@@ -128,7 +128,7 @@ export default function ManageEmployeesSection() {
         {employees.map((employee,index) => (
           <div key={index} className="flex items-center mb-4">
             <img
-              src={`http://localhost:4000/images/${employee.image}`} // Update the image path accordingly
+              src={`https://sheer-fixed-mask.glitch.me/images/${employee.image}`} // Update the image path accordingly
               alt={employee.name}
               className="w-16 h-16 rounded-full mr-4"
             />

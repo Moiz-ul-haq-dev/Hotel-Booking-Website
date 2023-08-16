@@ -13,7 +13,7 @@ export default function ManageRoomsSection() {
 
   const fetchRooms = async () => {
     console.log('fetchEmployees called');
-    fetch('http://localhost:4000/getRooms', {
+    fetch('https://sheer-fixed-mask.glitch.me/getRooms', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ export default function ManageRoomsSection() {
 
   const fetchEmployees = async () => {
     console.log('fetchEmployees called');
-    fetch('http://localhost:4000/getEmployees', {
+    fetch('https://sheer-fixed-mask.glitch.me/getEmployees', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export default function ManageRoomsSection() {
   return (
     <div className="p-4">
       <div className="bg-white rounded-lg shadow-md p-4 mb-4 ">
-        <form action='http://localhost:4000/addRooms' method='post' encType="multipart/form-data" key={"roomsId"}>
+        <form action='https://sheer-fixed-mask.glitch.me/addRooms' method='post' encType="multipart/form-data" key={"roomsId"}>
           <h3 className="text-lg font-bold mb-2 text-center">Add New Room</h3>
           <label className="block text-sm font-medium text-gray-700 mb-2">Enter Room Number:</label>
           <input
@@ -128,7 +128,7 @@ export default function ManageRoomsSection() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {rooms.map((room, index) => (
           <div key={index} className="bg-white rounded-lg shadow-md p-4">
-            <img src={`http://localhost:4000/roomImages/${room.roomImage}`} alt={`Room ${room.roomNo}`} className="w-full h-40 object-cover mb-2" />
+            <img src={`https://sheer-fixed-mask.glitch.me/roomImages/${room.roomImage}`} alt={`Room ${room.roomNo}`} className="w-full h-40 object-cover mb-2" />
             <h3 className="text-lg font-bold mb-1">{room.roomNo}</h3>
             <p className="mb-2">{room.description}</p>
             <p className="text-sm text-gray-500 mb-2">Type: {room.roomType}</p>

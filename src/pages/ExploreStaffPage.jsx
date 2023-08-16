@@ -9,7 +9,7 @@ export default function ExploreStaffPage() {
   }, []);
 
   const fetchEmployees = async () => {
-    fetch('http://localhost:4000/getEmployees', {
+    fetch('https://sheer-fixed-mask.glitch.me/getEmployees', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ export default function ExploreStaffPage() {
             className="bg-white p-6 text-black flex flex-col items-center rounded-lg shadow-lg transition transform hover:scale-105 hover:bg-orange-400"
           >
             <img
-              src={`http://localhost:4000/images/${staff.image}`}
+              src={`https://sheer-fixed-mask.glitch.me/images/${staff.image}`}
               alt={staff.name}
               className="w-44 h-44 object-cover rounded-full mb-4"
             />

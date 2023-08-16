@@ -28,7 +28,7 @@ export default function LoginSignupPage() {
       alert('Passwords do not match');
     } else {
       console.log(email, password, confirmPassword, userRole);
-      fetch('http://localhost:4000/signUp', {
+      fetch('https://sheer-fixed-mask.glitch.me/signUp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ export default function LoginSignupPage() {
 
     console.log(email, password);
 
-    fetch('http://localhost:4000/logIn', {
+    fetch('https://sheer-fixed-mask.glitch.me/logIn', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

@@ -18,7 +18,7 @@ export default function DashBoardSection() {
     let count = 0;
     let count1 = 0;
     let revenue = 0;
-    fetch('http://localhost:4000/getRooms', {
+    fetch('https://sheer-fixed-mask.glitch.me/getRooms', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

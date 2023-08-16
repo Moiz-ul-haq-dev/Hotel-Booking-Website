@@ -30,7 +30,7 @@ export default function ContactUsPage() {
 
         console.log(userName, userEmail, userPhone, userMessage);
 
-        fetch('http://localhost:4000/sendContactMail', {
+        fetch('https://sheer-fixed-mask.glitch.me/sendContactMail', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

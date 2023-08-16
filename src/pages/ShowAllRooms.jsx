@@ -6,7 +6,7 @@ export default function ShowAllRooms() {
 
     useEffect(() => {
         // Fetch rooms data from API
-        fetch('http://localhost:4000/getRooms')
+        fetch('https://sheer-fixed-mask.glitch.me/getRooms')
             .then((response) => response.json())
             .then((data) => {
                 setRoomsData(data);
@@ -62,7 +62,7 @@ export default function ShowAllRooms() {
 
             console.log(customerName, customerEmail, customerContact, noOfChildren, noOfAdults, room);
 
-            const response = await fetch('http://localhost:4000/paymentRoom', {
+            const response = await fetch('https://sheer-fixed-mask.glitch.me/paymentRoom', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -164,7 +164,7 @@ export default function ShowAllRooms() {
                         className="card flex-1 border shadow-lg relative transition-transform transform-gpu hover:scale-105"
                     >
                         <img
-                            src={`http://localhost:4000/roomImages/${room.roomImage}`}
+                            src={`https://sheer-fixed-mask.glitch.me/roomImages/${room.roomImage}`}
                             alt={room.title}
                             className="w-full h-48 object-cover"
                         />
