@@ -1,47 +1,14 @@
-import React , { useState , useEffect }from 'react';
-
-// const staffData = [
-//   {
-//     name: 'Moiz-ul-haq',
-//     position: 'CEO',
-//     imageSrc: '/images/CEO.jpg',
-//     socialMedia: {
-//       twitter: '/images/twitter.png',
-//       linkedin: '/images/instagram.png',
-//       facebook: '/images/fb.png',
-//     },
-//   },
-//   {
-//     name: 'Jane Smith',
-//     position: 'Hotel Manager',
-//     imageSrc: '/images/Staff1.jpg',
-//     socialMedia: {
-//       twitter: '/images/twitter.png',
-//       linkedin: '/images/instagram.png',
-//       facebook: '/images/fb.png',
-//     },
-//   },
-//   {
-//     name: 'Emma Watson',
-//     position: 'Event Planner',
-//     imageSrc: '/images/Staff2.jpg',
-//     socialMedia: {
-//       twitter: '/images/twitter.png',
-//       linkedin: '/images/instagram.png',
-//       facebook: '/images/fb.png',
-//     },
-//   },
-//   // Add more staff members as needed...
-// ];
+import React, { useState, useEffect } from 'react';
 
 export default function ExploreStaffPage() {
   const [employees, setEmployees] = useState([]);
+  const [showAll, setShowAll] = useState(false);
+
   useEffect(() => {
     fetchEmployees();
   }, []);
 
   const fetchEmployees = async () => {
-    console.log('fetchEmployees called');
     fetch('http://localhost:4000/getEmployees', {
       method: 'GET',
       headers: {
@@ -51,21 +18,25 @@ export default function ExploreStaffPage() {
       .then((res) => res.json())
       .then((data) => {
         setEmployees(data);
-      }
-      );
+      });
   };
+
+  const visibleEmployees = showAll ? employees : employees.slice(0, 3);
 
   return (
     <div className="mx-32 my-24">
-       <h1 className="flex text-orange-400 font-bold text-lg justify-center">
-          <p className="mr-4 font-normal">━━━━</p> OUR TEAM <p className="ml-4 font-normal">━━━━</p>
-        </h1>
-        <h1 className="flex font-bold text-4xl mt-6 justify-center">
-          Explore Our <p className="ml-4 text-orange-400">STAFFS</p>
-        </h1>
+      <h1 className="flex text-orange-400 font-bold text-lg justify-center">
+        <p className="mr-4 font-normal">━━━━</p> OUR TEAM <p className="ml-4 font-normal">━━━━</p>
+      </h1>
+      <h1 className="flex font-bold text-4xl mt-6 justify-center">
+        Explore Our <p className="ml-4 text-orange-400">STAFFS</p>
+      </h1>
       <div className="grid gap-8 md:grid-cols-3 my-10">
-        {employees.map((staff, index) => (
-          <div key={index} className="bg-white p-6 text-black flex flex-col items-center rounded-lg shadow-lg">
+        {visibleEmployees.map((staff, index) => (
+          <div
+            key={index}
+            className="bg-white p-6 text-black flex flex-col items-center rounded-lg shadow-lg transition transform hover:scale-105 hover:bg-orange-400"
+          >
             <img
               src={`http://localhost:4000/images/${staff.image}`}
               alt={staff.name}
@@ -73,19 +44,19 @@ export default function ExploreStaffPage() {
             />
             <h2 className="text-lg font-semibold mb-2">{staff.name}</h2>
             <p className="text-sm mb-2">{staff.contact}</p>
-            {/* <div className="flex space-x-4">
-              {Object.entries(staff.socialMedia).map(([platform, logoSrc]) => (
-                <div
-                  key={platform}
-                  className="w-10 h-10 bg-orange-400 rounded-md flex items-center justify-center"
-                >
-                  <img src={logoSrc} alt={`${platform} logo`} className="w-6 h-6 object-contain" />
-                </div>
-              ))}
-            </div> */}
           </div>
         ))}
       </div>
+      {!showAll && employees.length > 3 && (
+        <div className="text-center">
+          <button
+            onClick={() => setShowAll(true)}
+            className="text-orange-400 font-semibold hover:underline"
+          >
+            Show More
+          </button>
+        </div>
+      )}
     </div>
   );
 }

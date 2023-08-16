@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 export default function ManageRoomsSection() {
   const [rooms, setRooms] = useState([]);
   const [employees, setEmployees] = useState([]);
+  const [highestRoomNumber, setHighestRoomNumber] = useState(0);
 
   useEffect(() => {
     fetchRooms();
@@ -21,6 +22,8 @@ export default function ManageRoomsSection() {
       .then((res) => res.json())
       .then((data) => {
         setRooms(data);
+        const highestNumber = Math.max(...data.map((room) => parseInt(room.roomNo)), 0);
+        setHighestRoomNumber(highestNumber);
       }
       );
   };
@@ -43,14 +46,21 @@ export default function ManageRoomsSection() {
   return (
     <div className="p-4">
       <div className="bg-white rounded-lg shadow-md p-4 mb-4 ">
-        <form action='http://localhost:4000/addRooms' method='post' encType="multipart/form-data" key = {"roomsId"}>
+        <form action='http://localhost:4000/addRooms' method='post' encType="multipart/form-data" key={"roomsId"}>
           <h3 className="text-lg font-bold mb-2 text-center">Add New Room</h3>
           <label className="block text-sm font-medium text-gray-700 mb-2">Enter Room Number:</label>
           <input
             type="text"
-            placeholder="Room Number"
+            // placeholder={(highestRoomNumber + 1).toString().padStart(3, '0')}
             // value={newRoom.roomNo}
+            value={(highestRoomNumber + 1).toString().padStart(3, '0')}
             className='block w-full border border-gray-300 rounded-md py-2 px-3 mb-3'
+            name="roomNo"
+            disabled
+          />
+          <input
+            type="hidden"
+            value={(highestRoomNumber + 1).toString().padStart(3, '0')}
             name="roomNo"
           />
           <label className="block text-sm font-medium text-gray-700 mb-2">Enter Room Type:</label>
@@ -116,7 +126,7 @@ export default function ManageRoomsSection() {
       </div>
       <h2 className="text-2xl font-bold mb-4">Manage Rooms</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {rooms.map((room,index) => (
+        {rooms.map((room, index) => (
           <div key={index} className="bg-white rounded-lg shadow-md p-4">
             <img src={`http://localhost:4000/roomImages/${room.roomImage}`} alt={`Room ${room.roomNo}`} className="w-full h-40 object-cover mb-2" />
             <h3 className="text-lg font-bold mb-1">{room.roomNo}</h3>

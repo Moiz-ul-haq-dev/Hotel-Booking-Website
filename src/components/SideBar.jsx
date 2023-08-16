@@ -11,6 +11,13 @@ export default function Sidebar(handleSectionChange) {
     handleSectionChange.onSectionChange(section);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('loggedIn');
+    localStorage.removeItem('email');
+    localStorage.removeItem('userRole');
+    window.location.href = '/';
+  };
+
   return (
     <nav className={`bg-gray-800 text-white p-4 transition-all duration-300 ${collapsed ? 'w-16' : 'w-64'}`}>
       <button
@@ -30,28 +37,33 @@ export default function Sidebar(handleSectionChange) {
       {!collapsed && (
         <ul>
           <li>
-          <div className="block font-bold py-2 cursor-pointer hover:text-orange-400" onClick={() => handleSectionClick('dashboard')}>
+            <div className="block font-bold py-2 cursor-pointer hover:text-orange-400" onClick={() => handleSectionClick('dashboard')}>
               Dashboard
             </div>
           </li>
           <li>
             <div className="block font-bold py-2 cursor-pointer hover:text-orange-400" onClick={() => handleSectionClick('manage-employees')}>
-                Manage Employees
+              Manage Employees
             </div>
           </li>
           <li>
             <div className="block font-bold py-2 cursor-pointer hover:text-orange-400" onClick={() => handleSectionClick('manage-rooms')}>
-                Manage Rooms
+              Manage Rooms
             </div>
           </li>
           <li>
             <div className="block font-bold py-2 cursor-pointer hover:text-orange-400" onClick={() => handleSectionClick('manage-bookings')}>
-                Manage Bookings
+              Manage Bookings
             </div>
           </li>
           <li>
             <div className="block font-bold py-2 cursor-pointer hover:text-orange-400" onClick={() => handleSectionClick('reviews')}>
-                Reviews
+              Reviews
+            </div>
+          </li>
+          <li>
+            <div className="block font-bold py-2 cursor-pointer hover:text-orange-400" onClick={handleLogout}>
+              Log Out
             </div>
           </li>
         </ul>

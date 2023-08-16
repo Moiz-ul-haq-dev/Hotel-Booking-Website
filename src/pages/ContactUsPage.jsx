@@ -4,25 +4,48 @@ import Footer from '../components/Footer'
 
 export default function ContactUsPage() {
 
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        phone: '',
-        message: '',
-    });
+    const [userName , setUserName] = useState('');
+    const [userEmail , setUserEmail] = useState('');
+    const [userPhone , setUserPhone] = useState('');
+    const [userMessage , setUserMessage] = useState('');
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+    const handleNameChange = (e) => {
+        setUserName(e.target.value);    
+    };
+
+    const handleEmailChange = (e) => {
+        setUserEmail(e.target.value);
+    };
+
+    const handlePhoneChange = (e) => {
+        setUserPhone(e.target.value);
+    };
+
+    const handleMessageChange = (e) => {
+        setUserMessage(e.target.value);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle form submission here, e.g., send data to a server or perform validation
-        console.log('Form data submitted:', formData);
+
+        console.log(userName, userEmail, userPhone, userMessage);
+
+        fetch('http://localhost:4000/sendContactMail', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userName, userEmail, userPhone, userMessage }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.error) {
+                    alert('Something went wrong. Please try again later.');
+                } else {
+                    alert('Thank you for contacting us!');
+                }
+            });
     };
-
-
 
     return (
         <>
@@ -35,66 +58,62 @@ export default function ContactUsPage() {
                     <p className="mr-4 text-orange-400">CONTACT</p> For Any Query
                 </h1>
                 <div className="container mx-auto my-12">
-                    <form onSubmit={handleSubmit} className="block">
+                    <form encType="multipart/form-data" className='block'>
                         <div className="card border shadow-lg relative p-4">
-                            <label htmlFor="name" className="text-lg font-semibold mb-2">
+                            <label className="text-lg font-semibold mb-2">
                                 Name
                             </label>
                             <input
                                 type="text"
-                                id="name"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
+                                name="username"
+                                // value={formData.name}
+                                onChange={handleNameChange}
                                 className="w-full p-2 border rounded-lg"
                                 required
                             />
                         </div>
                         <div className="card border shadow-lg relative p-4">
-                            <label htmlFor="email" className="text-lg font-semibold mb-2">
+                            <label className="text-lg font-semibold mb-2">
                                 Email
                             </label>
                             <input
                                 type="email"
-                                id="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
+                                name="useremail"
+                                // value={formData.email}
+                                onChange={handleEmailChange}
                                 className="w-full p-2 border rounded-lg"
                                 required
                             />
                         </div>
                         <div className="card border shadow-lg relative p-4">
-                            <label htmlFor="phone" className="text-lg font-semibold mb-2">
+                            <label className="text-lg font-semibold mb-2">
                                 Phone
                             </label>
                             <input
                                 type="tel"
-                                id="phone"
-                                name="phone"
-                                value={formData.phone}
-                                onChange={handleChange}
+                                name="userphone"
+                                // value={formData.phone}
+                                onChange={handlePhoneChange}
                                 className="w-full p-2 border rounded-lg"
                                 required
                             />
                         </div>
                         <div className="card border shadow-lg relative p-4">
-                            <label htmlFor="message" className="text-lg font-semibold mb-2">
+                            <label className="text-lg font-semibold mb-2">
                                 Message
                             </label>
                             <textarea
-                                id="message"
-                                name="message"
-                                value={formData.message}
-                                onChange={handleChange}
+                                typeof='text'
+                                name="usermessage"
+                                // value={formData.message}
+                                onChange={handleMessageChange}
                                 className="w-full p-2 border rounded-lg resize-none"
                                 rows={4}
                                 required
                             />
                         </div>
                         <div className="flex justify-center">
-                            <button type="submit" className="bg-orange-400 text-white my-10 font-bold w-full py-4 px-8">
-                                Submit
+                            <button type='submit' className="bg-orange-400 text-white my-10 font-bold w-full py-4 px-8" onClick={handleSubmit}>Submit
                             </button>
                         </div>
                     </form>

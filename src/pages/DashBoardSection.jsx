@@ -9,12 +9,15 @@ export default function DashBoardSection() {
   const [pendingBookings, setPendingBookings] = useState(0);
   const [generatedRevenue, setGeneratedRevenue] = useState(0);
 
+
   useEffect(() => {
     fetchRooms();
   }, []);
 
   const fetchRooms = async () => {
-    console.log('fetchEmployees called');
+    let count = 0;
+    let count1 = 0;
+    let revenue = 0;
     fetch('http://localhost:4000/getRooms', {
       method: 'GET',
       headers: {
@@ -25,13 +28,17 @@ export default function DashBoardSection() {
       .then((data) => {
         for (let i = 0; i < data.length; i++) {
           if (data[i].roomAvailability === 'Unavailable') {
-            setOccupiedRooms(occupiedRooms + 1);
+            count = count + 1;
+            revenue = revenue + parseInt(data[i].pricePerDay);
           }
-          else {
-            setFreeRooms(freeRooms + 1);
+          if (data[i].roomAvailability === 'Available') {
+            count1 = count1 + 1;
           }
         }
         setRooms(data);
+        setFreeRooms(count1);
+        setOccupiedRooms(count);
+        setGeneratedRevenue(revenue);
       }
       );
   };
@@ -54,7 +61,7 @@ export default function DashBoardSection() {
         </div>
         <div className="bg-white p-4 rounded-lg shadow col-span-2">
           <h3 className="text-lg font-semibold mb-2">Generated Revenue</h3>
-          <p>Total Revenue: {generatedRevenue}</p>
+          <p>Total Revenue: $ {generatedRevenue}</p>
         </div>
       </div>
     </div>

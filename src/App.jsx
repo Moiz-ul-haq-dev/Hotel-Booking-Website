@@ -5,6 +5,8 @@ import AboutUsPage from './pages/AboutUsPage'
 import ContactUsPage from './pages/ContactUsPage'
 import LoginSignupPage from './pages/LoginSignupPage'
 import AdminDashboardPage from './pages/AdminDashboardPage'
+import PaymentDone from './pages/PaymentDone'
+import ShowAllRooms from './pages/ShowAllRooms'
 
 function App() {
 
@@ -15,8 +17,10 @@ function App() {
           <Route path='/' element = {<HomePage />} />
           <Route path='/About' element = {<AboutUsPage />} />
           <Route path="/Contact" element = {<ContactUsPage />} />
-          <Route path='LoginSignup' element = {<LoginSignupPage />} />
+          <Route path='/LoginSignup' element = {<LoginSignupPage />} />
           <Route path='/dashboard/*' element = {<AdminDashboardPage />} />
+          <Route path='/paymentDone' element = {<PaymentDone />} />
+          <Route path='/showAllRooms' element = {<ShowAllRooms />} />
         </Routes>
       </Router>
     </>
