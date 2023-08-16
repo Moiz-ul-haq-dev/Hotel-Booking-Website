@@ -65,7 +65,7 @@ export default function LoginSignupPage() {
             localStorage.setItem('userRole', 'Admin');
             localStorage.setItem('email', email);
             localStorage.setItem('loggedIn', true);
-            window.location.href = '/dashboard';
+            window.location.href = '/dashboard*';
           }
           else if (data[i].email === email && data[i].password === password && data[i].userRole === "Customer") {
             console.log('Login Successful customer');
