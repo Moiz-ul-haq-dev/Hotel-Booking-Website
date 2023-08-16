@@ -7,6 +7,7 @@ import LoginSignupPage from './pages/LoginSignupPage'
 import AdminDashboardPage from './pages/AdminDashboardPage'
 import PaymentDone from './pages/PaymentDone'
 import ShowAllRooms from './pages/ShowAllRooms'
+import MailSentPage from './pages/MailSentPage'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
           <Route path='/LoginSignup' element = {<LoginSignupPage />} />
           <Route path='/dashboard/*' element = {<AdminDashboardPage />} />
           <Route path='/paymentDone' element = {<PaymentDone />} />
+          <Route path='/mailSent' element = {<MailSentPage />} />
           <Route path='/showAllRooms' element = {<ShowAllRooms />} />
         </Routes>
       </Router>
